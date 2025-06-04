@@ -69,11 +69,8 @@ class FirecrawlCrawlWebsiteTool(BaseTool):
             if click.confirm(
                 "You are missing the 'firecrawl-py' package. Would you like to install it?"
             ):
-                try:
-                    subprocess.run(["uv", "add", "firecrawl-py"], check=True)
-                    from firecrawl import FirecrawlApp
-                except subprocess.CalledProcessError:
-                    raise ImportError("Failed to install firecrawl-py package")
+                subprocess.run(["uv", "add", "firecrawl-py"], check=True)
+                from firecrawl import FirecrawlApp
             else:
                 raise ImportError(
                     "`firecrawl-py` package not found, please run `uv add firecrawl-py`"
